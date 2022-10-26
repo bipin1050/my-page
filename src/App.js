@@ -1,9 +1,16 @@
-
-
+import {Route, Routes} from "react-router-dom"
+import Error from "./components/error";
+import Profile from "./components/profile";
+ 
 function App() {
   return (
     <div className="App">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, doloremque. Laboriosam sit praesentium ad blanditiis dolores numquam molestias veritatis illo iusto debitis non exercitationem dignissimos, harum labore aut, perferendis adipisci?
+        <Routes>
+          <Route index element={<Profile />}/>
+          <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<Error />} />
+        {/* <Route path="addproduct" element={<Addproduct />} /> */}
+      </Routes>
     </div>
   );
 }
