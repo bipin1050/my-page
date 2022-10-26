@@ -12834,3 +12834,16 @@ pre .code {
   border: 2px solid black;
   border-radius: 30px;
 }
+@media (max-width: 900px){
+  .exp{
+    width: 80%;
+    flex-direction: column;
+  }
+  .columns{
+    width: 100%;
+    margin: 20px;
+  }
+  .projects{
+    width : 90%;
+  }
+}

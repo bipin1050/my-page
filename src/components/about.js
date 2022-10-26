@@ -8,7 +8,7 @@ const About = () => {
                 <div className="col-lg-4 about-card">
                     <h3 className="font-weight-light">Who am I ?</h3>
                     <span className="line mb-5"></span>
-                    <h5 className="mb-3">A Web Designer / Developer Located In Our Lovely Earth</h5>
+                    <h5 className="mb-3">A Web Designer / Developer Located In Our Lovely Earth who knows the following statement</h5>
                     <p className="mt-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.sit amet, Qui deserunt consequatur fugit repellendusillo voluptas?</p>
                     {/* <button className="btn btn-outline-danger"><i className="icon-down-circled2 "></i>Download My CV</button> */}
                 </div>
@@ -29,7 +29,7 @@ const About = () => {
                         <div className="col-1 text-danger pt-1"><i className="ti-widget icon-lg"></i></div>
                         <div className="col-10 ml-auto mr-3">
                             <h6>UX Design</h6>
-                            <p className="subtitle"> exercitat Repellendus,  corrupt.</p>
+                            <p className="subtitle">Exploring !!</p>
                             <hr/>
                         </div>
                     </div>
@@ -37,7 +37,7 @@ const About = () => {
                         <div className="col-1 text-danger pt-1"><i className="ti-paint-bucket icon-lg"></i></div>
                         <div className="col-10 ml-auto mr-3">
                             <h6>Web Development</h6>
-                            <p className="subtitle">Lorem ipsum dolor sit consectetur.</p>
+                            <p className="subtitle">Friendly !!</p>
                             <hr/>
                         </div>
                     </div>

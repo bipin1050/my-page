@@ -1,5 +1,5 @@
 import React from 'react'
-import headerphoto from "../imgs/avatar.jpg"
+import headerphoto from "../imgs/avatar1.jpg"
 
 const TopNav = () => {
   return (
