@@ -70,7 +70,7 @@ const TopNav = () => {
                 </a>
               </li>
               <li className="nav-item last-item">
-                <a href="/resume" target="_blank" norefferer noopener className="nav-link">
+                <a href="/resume" target="_blank" norefferer='true' noopener='true' className="nav-link">
                   Resume
                 </a>
               </li>

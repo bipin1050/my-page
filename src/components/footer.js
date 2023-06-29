@@ -7,8 +7,8 @@ import linkedin from '../imgs/icons/linkedin.png'
 const Footer = () => {
   return (
     <div>
-        <footer class="footer py-3">
-            <div class="container">
+        <footer className="footer py-3">
+            <div className="container">
                 <p className='medium mb-0 text-light'>Social Links</p>
                 <a href='https://facebook.com/bipin.khanal1050' target='_blank' rel="noreferrer"><img src={facebook} width='30px' alt='facebook'/> </a>
                 <a href='https://www.instagram.com/_bip_in_/' target='_blank' rel="noreferrer"><img src={instagram} width='30px'alt='instagram' /> </a>
