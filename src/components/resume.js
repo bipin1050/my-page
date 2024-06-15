@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 
 const Resume = () => {
   useEffect(() => {
-    document.title = "Resume - Bipin";
+    document.title = "Resume | Bipin Khanal";
   }, []);
 
   return (
-    <div className="w-full m-auto">
+    <div style={{width: "100%", height: "100vh", margin: "auto"}}>
       <iframe
         width="100%"
-        height="800"
-        src="https://bipin1050.github.io/resume/"
+        height="100%"
+        src="https://resume-nine-psi.vercel.app/"
         title="Resume"
         frameborder="0"
         style={{ overflow: "hidden" }}
