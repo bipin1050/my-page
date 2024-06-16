@@ -6,7 +6,7 @@ const Resume = () => {
   }, []);
 
   return (
-    <div style={{width: "100%", height: "100vh", margin: "auto"}}>
+    <div style={{ width: "100%", height: "100vh", margin: "auto" }}>
       <iframe
         width="100%"
         height="100%"
@@ -15,7 +15,8 @@ const Resume = () => {
         frameborder="0"
         style={{ overflow: "hidden" }}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen></iframe>
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };

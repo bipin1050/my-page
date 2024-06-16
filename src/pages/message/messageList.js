@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./MessageList.css";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
-
 const MessageList = () => {
-  useEffect(()=>{
-    getMessage()
-  },[])
-
   const messageRef = collection(db, "message");
   const [messages, setMessages] = useState([]);
 
-  // const getMessage = async () => {
-  //   const data = await getDoc(messageRef);
-  //   // setMessages(data.docs);
-  //   console.log(data.docs)
-  // };
   const getMessage = async () => {
     try {
       const querySnapshot = await getDocs(messageRef);
@@ -29,13 +18,21 @@ const MessageList = () => {
       console.error("Error getting messages: ", error);
     }
   };
+
+  useEffect(() => {
+    getMessage();
+  }, []);
+
   return (
-    <div className="message-list">
+    <div className="w-full px-4 xl:w-[1200px] mx-auto py-10">
       {messages.map((message, index) => (
-        <div className="message" key={index}>
-          <div className="message-details">
-            <h4 className="message-name">{message.name}</h4>
-            <p className="message-email">{message.email}</p>
+        <div
+          className="border-[#ccc] border-[2px] rounded-lg p-3 mb-3"
+          key={index}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center mb-2">
+            <h4 className="font-bold mr-3">{message.name}</h4>
+            <p className="text-black text-opacity-80">{message.email}</p>
           </div>
           <p className="message-text">{message.message}</p>
         </div>
