@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme inline {
+  --color-ink-950: #06060a;
+  --color-ink-900: #0b0b12;
+  --color-ink-800: #12121c;
+  --color-ink-700: #1c1b29;
+  --color-snow: #f3f1ec;
+  --color-mist: #a3a1b4;
+  --color-dusk: #6f6c85;
+  --color-aurora: #a78bfa;
+  --color-aurora-deep: #7c3aed;
+  --color-alpenglow: #ff9e7a;
+  --color-ember: #ffc56b;
+
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --font-hand: var(--font-caveat), "Segoe Print", cursive;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-flutter: flutter 3.2s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes flutter {
+  0%,
+  100% {
+    transform: skewY(0deg) scaleX(1);
+  }
+  50% {
+    transform: skewY(-6deg) scaleX(0.94);
+  }
+}
+
+/* Hero intro runs in CSS so the headline paints before hydration (good for LCP). */
+@keyframes rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@utility intro-rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility intro-fade {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Base styles live in a layer so Tailwind utilities (e.g. focus:outline-none) can override them. */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--color-ink-950);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* body stays transparent so section glows (negative z-index) can sit above the html background */
+  body {
+    color: var(--color-snow);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-aurora) 45%, transparent);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-aurora);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Soft shade behind the hero copy so it stays readable over the snowy peaks. */
+.hero-shade {
+  background: radial-gradient(120% 42% at 35% 42%, rgb(6 6 10 / 0.78), rgb(6 6 10 / 0.45) 50%, transparent 80%);
+}
+
+@media (min-width: 768px) {
+  .hero-shade {
+    background: radial-gradient(60% 55% at 22% 45%, rgb(6 6 10 / 0.7), rgb(6 6 10 / 0.35) 50%, transparent 75%);
+  }
+}
+
+/* Film grain over everything — subtle texture so flat darks don't band. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@utility text-gradient {
+  /* italic glyphs overhang their box; pad it so background-clip doesn't shave the last letter */
+  padding-inline: 0.06em 0.14em;
+  margin-inline: -0.06em -0.14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-image: linear-gradient(100deg, #d9ccff 0%, var(--color-aurora) 35%, var(--color-alpenglow) 75%, var(--color-ember) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility card {
+  position: relative;
+  border-radius: 1.75rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01)),
+    var(--color-ink-900);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

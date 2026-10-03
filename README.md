@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Bipin Khanal — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal site at **[khanalbipin.com.np](https://www.khanalbipin.com.np)**, built with Next.js (App Router), Tailwind CSS v4 and Motion.
 
-## Available Scripts
+The page is a climb up Everest: each section is a camp on the south-col route, and the altimeter on the right rises from the trailhead (0 m) to the summit (8,849 m) as you scroll.
 
-In the project directory, you can run:
+## Getting started
 
-### `yarn start`
+```bash
+npm install
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open http://localhost:3000.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Script              | What it does                         |
+| ------------------- | ------------------------------------ |
+| `npm run dev`       | Dev server with Turbopack            |
+| `npm run build`     | Production build (all routes static) |
+| `npm start`         | Serve the production build           |
+| `npm run typecheck` | TypeScript check                     |
 
-### `yarn test`
+## Editing content
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Everything personal — bio, experience, projects, skills, socials, resume link — lives in
+[`src/content/site.ts`](src/content/site.ts). Edit that file; the components read from it.
 
-### `yarn build`
+## Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+  app/                 routes + SEO (metadata, sitemap, robots, manifest, OG image)
+    resume/            embeds the resume from resume-nine-psi.vercel.app
+    viewallmessage/    reads contact-form messages from Firestore (noindex)
+  components/
+    hero/              procedurally generated ridgelines + starfield
+    sections/          About, Skills, Experience, Projects, Beyond, Contact
+    Hud.tsx            floating nav + altimeter
+    CommandPalette.tsx ⌘K / Ctrl+K menu
+  content/site.ts      all copy and data
+  lib/terrain.ts       seeded ridge + contour-map generators (run at build time)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## SEO
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Every route is statically prerendered, so crawlers get full HTML.
+- Metadata API: canonical URLs, Open Graph / Twitter cards, `robots` rules.
+- Generated `opengraph-image`, `sitemap.xml`, `robots.txt` and web manifest.
+- JSON-LD `Person` + `WebSite` structured data.
 
-### `yarn eject`
+Set `NEXT_PUBLIC_SITE_URL` if the site moves off `https://www.khanalbipin.com.np`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deploying
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Push to the connected Vercel project. Vercel detects Next.js automatically, so no extra config is needed.
